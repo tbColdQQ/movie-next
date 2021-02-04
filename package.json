@@ -10,6 +10,7 @@
   "dependencies": {
     "@babel/core": "^7.12.13",
     "@chakra-ui/core": "^1.0.0-next.4",
+    "@chakra-ui/theme": "^1.0.0-next.4",
     "@chakra-ui/theme-tools": "^1.0.0-next.4",
     "@emotion/core": "^10.0.28",
     "@emotion/styled": "^10.0.27",
@@ -19,7 +20,7 @@
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-icons": "^3.10.0",
-    "react-responsive-carousel": "^3.2.9"
+    "react-responsive-carousel": "^3.2.11"
   },
   "devDependencies": {
     "@emotion/babel-preset-css-prop": "^10.0.27"

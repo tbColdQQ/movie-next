@@ -1,4 +1,3 @@
-import '../styles/globals.css'
 import { ChakraProvider, CSSReset } from '@chakra-ui/core'
 import theme from '../chakra'
 
