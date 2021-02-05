@@ -3,6 +3,9 @@ import { Carousel } from 'react-responsive-carousel'
 import Head from 'next/head'
 import styled from '@emotion/styled'
 import { Button, Text, Box, Heading } from '@chakra-ui/core'
+import axios from 'axios'
+import { baseURL } from '../axios.config'
+import Link from 'next/link'
 
 const CarouselItem = styled.div`
   position: relative;  
@@ -40,27 +43,32 @@ const swiperContainer = css`
   }
 `
 
-export default function Swiper () {
+export default function Swiper ({data}) {
   return <>
     <Head>
       <link rel="stylesheet" href="/css/carousel.min.css" />
     </Head>
     <Carousel css={swiperContainer} showArrows={false} showIndicators={false} showStatus={false}>
-      <CarouselItem>
-        <img src="/images/1.jpg" />
-        <Box>
-          <Heading as="h2" size="lg">11111</Heading>
-          <Text>22222</Text>
-          <Button colorScheme="red" size="lg">CHECK DETAIL</Button>
-        </Box>
-      </CarouselItem>
-      <CarouselItem>
-        <img src="/images/2.jpg" />
-      </CarouselItem>
-      <CarouselItem>
-        <img src="/images/3.jpg" />
-      </CarouselItem>
+      {
+        data.map(swiper => (
+          <CarouselItem key={swiper.id}>
+            <img src={swiper.url} />
+            <Box>
+              <Heading as="h2" size="lg">{swiper.title}</Heading>
+              <Text>{swiper.description}</Text>
+              <Button colorScheme="red" size="lg">
+                <Link href="/detail/[id]" as={`/detail/${swiper.vid}`}>
+                  <a>CHECK DETAIL</a>
+                </Link>
+              </Button>
+            </Box>
+          </CarouselItem>
+        ))
+      }
     </Carousel>
-    <Button colorScheme="red" color="black">Test</Button>
   </>
+}
+
+export function loadSwiper () {
+  return axios.get('/api/swiper', {baseURL})
 }
